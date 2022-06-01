@@ -1,0 +1,26 @@
+﻿ <Window WindowStartupLocation="CenterScreen" x:Class="Salon.WindowUser"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Salon"
+        mc:Ignorable="d"
+        Title="Авторизация" Height="350" Width="350" Icon="/Resource/logo1.jpg">
+    <Grid Background="#ffdadada">
+        <Border MinWidth="200" Margin="10" Background="White" VerticalAlignment="Center" Padding="30" MaxWidth="280" CornerRadius="20">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="30" Color="{StaticResource shadow}" ShadowDepth="0" />
+            </Border.Effect>
+            <StackPanel>
+                <TextBlock Text="Логин:" Margin="35 10 0 0" HorizontalAlignment="Left" FontFamily="Monotype Corsiva" FontSize="16"/>
+                <TextBox x:Name="LoginTextBox" Height="30" Width="150" FontFamily="Monotype Corsiva" FontSize="14"/>
+                <TextBlock Text="Пароль:" Margin="35 5 0 10" HorizontalAlignment="Left" FontFamily="Monotype Corsiva" FontSize="16" />
+                <PasswordBox x:Name="PasswordTextBox" Height="30" Width="150" FontFamily="Monotype Corsiva" FontSize="14" />
+                <Grid Margin="-10,35,-10,0">
+                    <Button x:Name="OkButton"  Width="75" Height="30" HorizontalAlignment="Left" Content="Войти"  Click="OkButton_Click"/>
+                    <Button x:Name="RegButton"  Width="124" Height="30" HorizontalAlignment="Right" Content="Регистрация"  Click="RegButton_Click"  />
+                </Grid>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

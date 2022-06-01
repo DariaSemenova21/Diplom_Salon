@@ -1,0 +1,46 @@
+﻿ <Window WindowStartupLocation="CenterScreen" x:Class="Salon.Windows.WindowEndEntry"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Salon.Windows"
+      mc:Ignorable="d"
+        xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+      Title="Завершение записи" Height="360" Width="380" Icon="/Resource/logo1.jpg">
+
+    <Grid Background="#ffdadada">
+        <Border Margin="10,10,10,10" Background="White"  Padding="30"  CornerRadius="20" >
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="30" Color="{StaticResource shadow}" ShadowDepth="0" />
+            </Border.Effect>
+            <Grid Margin="-20">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="35"/>
+                </Grid.RowDefinitions>
+                
+                <ListBox x:Name="ServicesData" SelectionChanged="ServicesData_SelectionChanged" Grid.Row="0" Margin="5">
+
+                </ListBox>
+
+                <Grid  Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="AddButton" Grid.Column="0" Content="Добавить услугу" Click="AddButton_Click"/>
+                    <Button x:Name="DeleteButton" Grid.Column="1" Content="Удалить услугу" IsEnabled="False" Click="DeleteButton_Click"/>
+                </Grid>
+
+                <TextBlock x:Name="TotalBox" Text="{Binding Total, StringFormat=Итого: {0}}" Grid.Row="2" />
+
+                <wpfTool:TimePicker x:Name="MyTimePicker" Height="30" TextAlignment="Left" Margin="20 5" FontFamily="Monotype Corsiva" FontSize="14"  Grid.Row="3"/>
+                <Button x:Name="EndButton" Content="Завершить" Width="110" Height="28" Click="EndButton_Click"  Grid.Row="4"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

@@ -1,0 +1,125 @@
+﻿<Window x:Class="Salon.Windows.OthetWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Salon.Windows" WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"
+        Title="Отчет" MinHeight="380" Height="380" MinWidth="1000" Width="1000" Icon="/Resource/logo1.jpg">
+
+    <Window.Resources>
+        <Style TargetType="ListViewItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="255"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Button x:Name="ChartButton" Content="Распределение выручки" HorizontalAlignment="Center" 
+                Height="35" Margin="10" VerticalAlignment="Center"
+                Width="200" Click="ChartButton_Click" Grid.Row="0" Grid.Column="0"/>
+
+        <Grid Grid.Column="1" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Период времени"  FontSize="28" FontFamily="Monotype Corsiva" Grid.Row="0" Grid.ColumnSpan="3"/>
+            <Grid Grid.Row="1" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="с:" FontSize="21" FontFamily="Monotype Corsiva"/>
+                <DatePicker x:Name="startDate" Height="30" Margin="10"  FontSize="18" FontFamily="Monotype Corsiva" Grid.Column="1" SelectedDateChanged="startDate_SelectedDateChanged"/>
+                <Button x:Name="ClearStartDate" Click="ClearStartDate_Click" IsEnabled="False" Content="Отмена" Grid.Column="2"/>
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="по:" FontSize="21" FontFamily="Monotype Corsiva"/>
+                <DatePicker x:Name="endDate"  FontSize="18" FontFamily="Monotype Corsiva" Height="30" Margin="10" Grid.Column="1" SelectedDateChanged="endDate_SelectedDateChanged"/>
+                <Button x:Name="ClearEndDate" Click="ClearEndDate_Click" IsEnabled="False" Content="Отмена" Grid.Column="2"/>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock x:Name="TotalRevenue" Grid.Row="0"  FontSize="22" FontFamily="Monotype Corsiva"/>
+            <TextBlock x:Name="Entries" Grid.Row="1"  FontSize="22" FontFamily="Monotype Corsiva"/>
+            <TextBlock x:Name="Clients" Grid.Row="2"  FontSize="22" FontFamily="Monotype Corsiva"/>
+        </Grid>
+
+        <TextBlock Text="Мастера"  FontSize="22" FontFamily="Monotype Corsiva" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top"/>
+        <ListView x:Name="MastersList"  Grid.Row="1" Grid.Column="1" Margin="5 30 5 5">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.ColumnSpan="2" Text="{Binding EmployeeName}" FontSize="18" FontWeight="Bold" TextAlignment="Center"/>
+                        <TextBlock Grid.Column="0" Text="{Binding NumberOfEntries, StringFormat=Записей: {0}}" Grid.Row="1" HorizontalAlignment="Center"/>
+                        <TextBlock Grid.Column="1" Text="{Binding NumberOfServices, StringFormat=Услуг: {0}}" Grid.Row="2" HorizontalAlignment="Center"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <TextBlock Text="Услуги"  FontSize="22" FontFamily="Monotype Corsiva" Grid.Row="1" Grid.Column="2" VerticalAlignment="Top"/>
+        <ListView x:Name="ServicesList"  Grid.Row="1" Grid.Column="2" Margin="5 30 5 5">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.ColumnSpan="2" Text="{Binding ServiceName}" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center"/>
+                        <TextBlock Grid.Column="0" Text="{Binding NumberOfUse, StringFormat=Количество: {0}}" Grid.Row="1" HorizontalAlignment="Center"/>
+                        <TextBlock Grid.Column="1" Text="{Binding TotalPrice, StringFormat=Общая сумма: {0}}" Grid.Row="2" HorizontalAlignment="Center"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button x:Name="ExitButton" Content="Выйти" HorizontalAlignment="Right" 
+                Height="29" Margin="0,12,20,10" VerticalAlignment="Top"
+                Width="80" Click="ExitButton_Click" Grid.Row="2" Grid.Column="2"/>
+    </Grid>
+</Window>
