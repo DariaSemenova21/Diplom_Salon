@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище SalonModelContainer" CdmEntityContainer="SalonEntities1">
+    <EntitySetMapping Name="Customer">
+      <EntityTypeMapping TypeName="SalonModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="Id_user" ColumnName="Id_user" />
+          <ScalarProperty Name="regular_customer" ColumnName="regular_customer" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="FIO" ColumnName="FIO" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employee">
+      <EntityTypeMapping TypeName="SalonModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="Id_user" ColumnName="Id_user" />
+          <ScalarProperty Name="photo" ColumnName="photo" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="FIO" ColumnName="FIO" />
+          <ScalarProperty Name="Id_position" ColumnName="Id_position" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EntryServicesRefs">
+      <EntityTypeMapping TypeName="SalonModel.EntryServicesRefs">
+        <MappingFragment StoreEntitySet="EntryServicesRefs">
+          <ScalarProperty Name="Id_service" ColumnName="Id_service" />
+          <ScalarProperty Name="Id_entry" ColumnName="Id_entry" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Position">
+      <EntityTypeMapping TypeName="SalonModel.Position">
+        <MappingFragment StoreEntitySet="Position">
+          <ScalarProperty Name="schedule" ColumnName="schedule" />
+          <ScalarProperty Name="salary" ColumnName="salary" />
+          <ScalarProperty Name="position" ColumnName="position" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Services">
+      <EntityTypeMapping TypeName="SalonModel.Services">
+        <MappingFragment StoreEntitySet="Services">
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="SalonModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Works">
+      <EntityTypeMapping TypeName="SalonModel.Works">
+        <MappingFragment StoreEntitySet="Works">
+          <ScalarProperty Name="works" ColumnName="works" />
+          <ScalarProperty Name="Id_employee" ColumnName="Id_employee" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MasterRatings">
+      <EntityTypeMapping TypeName="SalonModel.MasterRatings">
+        <MappingFragment StoreEntitySet="MasterRatings">
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
+          <ScalarProperty Name="Id_master" ColumnName="Id_master" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Entries">
+      <EntityTypeMapping TypeName="SalonModel.Entries">
+        <MappingFragment StoreEntitySet="Entries">
+          <ScalarProperty Name="grand_total" ColumnName="grand_total" />
+          <ScalarProperty Name="end_datetime" ColumnName="end_datetime" />
+          <ScalarProperty Name="start_datetime" ColumnName="start_datetime" />
+          <ScalarProperty Name="Id_employee" ColumnName="Id_employee" />
+          <ScalarProperty Name="Id_customer" ColumnName="Id_customer" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище SalonModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FIO" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="phone" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="address" Type="varchar(max)" Nullable="false" />
+    <Property Name="regular_customer" Type="varchar" MaxLength="20" />
+    <Property Name="Id_user" Type="int" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_position" Type="int" Nullable="false" />
+    <Property Name="FIO" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="address" Type="varchar(max)" Nullable="false" />
+    <Property Name="phone" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="photo" Type="nvarchar(max)" />
+    <Property Name="Id_user" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Entries">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_customer" Type="int" Nullable="false" />
+    <Property Name="Id_employee" Type="int" Nullable="false" />
+    <Property Name="start_datetime" Type="datetime" Nullable="false" />
+    <Property Name="end_datetime" Type="datetime" />
+    <Property Name="grand_total" Type="int" />
+  </EntityType>
+  <EntityType Name="EntryServicesRefs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_entry" Type="int" Nullable="false" />
+    <Property Name="Id_service" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MasterRatings">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_master" Type="int" Nullable="false" />
+    <Property Name="rating" Type="int" Nullable="false" />
+    <Property Name="date" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Position">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="position" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="salary" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="schedule" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Services">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="price" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="login" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="role" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Works">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_employee" Type="int" Nullable="false" />
+    <Property Name="works" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK_Customer_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="Id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Position">
+    <End Role="Position" Type="Self.Position" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Position">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="Id_position" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="Id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Entries_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Entries" Type="Self.Entries" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Entries">
+        <PropertyRef Name="Id_customer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Entries_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Entries" Type="Self.Entries" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Entries">
+        <PropertyRef Name="Id_employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EntryServicesRefs_Entries">
+    <End Role="Entries" Type="Self.Entries" Multiplicity="1" />
+    <End Role="EntryServicesRefs" Type="Self.EntryServicesRefs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Entries">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EntryServicesRefs">
+        <PropertyRef Name="Id_entry" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EntryServicesRefs_Services">
+    <End Role="Services" Type="Self.Services" Multiplicity="1" />
+    <End Role="EntryServicesRefs" Type="Self.EntryServicesRefs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Services">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EntryServicesRefs">
+        <PropertyRef Name="Id_service" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MasterRatings_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="MasterRatings" Type="Self.MasterRatings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MasterRatings">
+        <PropertyRef Name="Id_master" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Works_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Works" Type="Self.Works" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Works">
+        <PropertyRef Name="Id_employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище SalonModelContainer">
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Entries" EntityType="Self.Entries" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EntryServicesRefs" EntityType="Self.EntryServicesRefs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MasterRatings" EntityType="Self.MasterRatings" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Works" EntityType="Self.Works" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Customer_User" Association="Self.FK_Customer_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Customer" EntitySet="Customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Position" Association="Self.FK_Employee_Position">
+      <End Role="Position" EntitySet="Position" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_User" Association="Self.FK_Employee_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Entries_Customer" Association="Self.FK_Entries_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Entries" EntitySet="Entries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Entries_Employee" Association="Self.FK_Entries_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Entries" EntitySet="Entries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EntryServicesRefs_Entries" Association="Self.FK_EntryServicesRefs_Entries">
+      <End Role="Entries" EntitySet="Entries" />
+      <End Role="EntryServicesRefs" EntitySet="EntryServicesRefs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EntryServicesRefs_Services" Association="Self.FK_EntryServicesRefs_Services">
+      <End Role="Services" EntitySet="Services" />
+      <End Role="EntryServicesRefs" EntitySet="EntryServicesRefs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MasterRatings_Employee" Association="Self.FK_MasterRatings_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="MasterRatings" EntitySet="MasterRatings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Works_Employee" Association="Self.FK_Works_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Works" EntitySet="Works" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
